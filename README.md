@@ -13,7 +13,7 @@ Tento projekt je jednoduchá webová aplikáci, ktorá:
 ## 💻 Inštalácia
 1. Klonuj repozitár:
 ```bash
-git clone https://github.com/tvoje-meno/weather-oop-app.git
+git clone git@github.com:jajoonline/ExWeather.git
 ```
 
 2. Nainštaluj závislosti:
@@ -23,7 +23,7 @@ composer install
 
 3. Vytvor `.env` súbor:
 ```
-OPENWEATHER_API_KEY=fa71460b38c7460e4e2223a3b75bc738
+OPENWEATHER_API_KEY=your_API_key
 ```
 
 4. Uisti sa, že priečinok `exports/` má práva na zápis.
