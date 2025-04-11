@@ -34,14 +34,18 @@ class OpenWeatherProvider extends WeatherProvider
         $data = json_decode($response->getBody(), true);
 
         foreach ($data['list'] as $entry) {
-            if (strpos($entry['dt_txt'], $this->date) !== false) {
-                return [
+            if (strtotime($this->date) < strtotime($entry['dt_txt'])) {
+                $dataExport[] = [
                     'mesto' => $data['city']['name'],
-                    'datum' => $this->date,
+                    'datum' => $entry['dt_txt'],
                     'teplota' => $entry['main']['temp'],
                     'pocasie' => $entry['weather'][0]['description']
                 ];
             }
+        }
+
+        if (is_array($dataExport)) {
+            return $dataExport;
         }
 
         throw new Exception("Nenašla sa predpoveď pre daný dátum.");

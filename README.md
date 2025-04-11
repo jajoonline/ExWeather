@@ -5,12 +5,12 @@ Tento projekt je jednoduchá webová aplikáci, ktorá:
 - načíta predpoveď počasia z OpenWeather API,
 - a vygeneruje Excel súbor s údajmi na stiahnutie.
 
-## 🧱 Použité technológie
+## Použité technológie
 - [Guzzle](https://github.com/guzzle/guzzle) – HTTP klient
 - [PhpSpreadsheet](https://phpspreadsheet.readthedocs.io/) – export do Excelu
 - [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) – správa `.env` premenných
 
-## 💻 Inštalácia
+## Inštalácia
 1. Klonuj repozitár:
 ```bash
 git clone git@github.com:jajoonline/ExWeather.git
