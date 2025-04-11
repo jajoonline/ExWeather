@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['city'])) {
+    setcookie('city', $_POST['city'], time() + (86400 * 30), "/"); // 30 days
+}
+
 require 'vendor/autoload.php';
 
 use App\Api\OpenWeatherProvider;
@@ -20,17 +24,23 @@ class WeatherApp
             exit;
         }
 
+        $provider = new OpenWeatherProvider($city, $date);
+
         try {
-            $provider = new OpenWeatherProvider($city, $date);
             $weather = $provider->fetchWeather();
-
-            $exporter = new ExcelExporter();
-            $fileName = $exporter->export($weather);
-
-            header("Location: index.php?file=$fileName");
         } catch (Exception $e) {
-            header("Location: index.php?error=" . urlencode($e->getMessage()));
+            if (str_contains($e->getMessage(), 'city not found') || str_contains($e->getMessage(), 'Mesto')) {
+                header("Location: index.php?error=" . urlencode("Zadané mesto sa nenašlo."));
+            } else {
+                header("Location: index.php?error=" . urlencode($e->getMessage()));
+            }
+            exit;
         }
+
+        $exporter = new ExcelExporter();
+        $fileName = $exporter->export($weather);
+
+        header("Location: index.php?file=$fileName");
     }
 }
 
