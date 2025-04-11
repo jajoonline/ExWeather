@@ -2,25 +2,36 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Počasie – Export do Excelu</title>
+    <title>Počasie - Excel export</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>Získaj predpoveď počasia</h1>
-    <form action="weather.php" method="POST">
-        <label for="city">Mesto:</label>
-        <input type="text" id="city" name="city" required>
+    <div class="container">
+        <h1>Ulož predpoveď predpoveď počasia do excelu</h1>
 
-        <label for="date">Dátum:</label>
-        <input type="date" id="date" name="date" required>
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-error">Chyba: <?= htmlspecialchars($_GET['error']) ?></div>
+        <?php endif; ?>
 
-        <button type="submit">Odoslať</button>
-    </form>
+        <?php if (isset($_GET['file'])): ?>
+            <div class="alert alert-success">
+                Excel súbor pripravený: <a href="exports/<?= htmlspecialchars($_GET['file']) ?>">Stiahnuť</a>
+            </div>
+        <?php endif; ?>
 
-    <?php if (isset($_GET['file'])): ?>
-        <p>✅ Úspešne vygenerované!</p>
-        <a href="exports/<?php echo htmlspecialchars($_GET['file']); ?>" download>Stiahnuť Excel</a>
-    <?php elseif (isset($_GET['error'])): ?>
-        <p style="color:red;">❌ Chyba: <?php echo htmlspecialchars($_GET['error']); ?></p>
-    <?php endif; ?>
+        <form method="POST" action="process.php" class="form">
+            <div class="form-group">
+                <label for="city">Mesto:</label>
+                <input type="text" name="city" id="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Dátum:</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+
+            <button type="submit">Uložiť</button>
+        </form>
+    </div>
 </body>
 </html>

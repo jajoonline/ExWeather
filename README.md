@@ -1,39 +1,30 @@
-# ExWeather
+# ExWeather - Počasie do Excelu
 
-Cieľ: Vytvoriť jednoduchú webovú aplikáciu, ktorá umožní používateľom odoslať formulár,
-dotazovať sa na OpenWeather API, agregovať získané údaje a vracať ich vo formáte Excel na
-stiahnutie.
-Požiadavky:
-1. Formulár:
-Vytvoriť jednoduchý HTML formulár s nasledujúcimi políčkami:
-- Mesto (textové pole)
-- Dátum (date picker)
-- Tlačidlo "Odoslať""
+Tento projekt je jednoduchá webová aplikáci, ktorá:
+- umožňuje používateľovi zadať mesto a dátum,
+- načíta predpoveď počasia z OpenWeather API,
+- a vygeneruje Excel súbor s údajmi na stiahnutie.
 
-2. Backend:
-o Použiť PHP na spracovanie údajov z formulára.
-o Na základe zadaných údajov (mesto a dátum) dotazovať sa na OpenWeather
-API na získanie údajov o počasí.
-o Agregovať získané údaje do zrozumiteľnej štruktúry.
+## 🧱 Použité technológie
+- [Guzzle](https://github.com/guzzle/guzzle) – HTTP klient
+- [PhpSpreadsheet](https://phpspreadsheet.readthedocs.io/) – export do Excelu
+- [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) – správa `.env` premenných
 
-3. API dotaz:
-Použiť OpenWeather API na získanie údajov o počasí. (Napríklad predpoveď
-na konkrétny deň).
+## 💻 Inštalácia
+1. Klonuj repozitár:
+```bash
+git clone https://github.com/tvoje-meno/weather-oop-app.git
+```
 
-Zabezpečiť správne spracovanie odpovedí API a ošetrenie chýb.
+2. Nainštaluj závislosti:
+```bash
+composer install
+```
 
-4. Generovanie Excel súboru:
-Použiť knižnicu podľa vlastného uváženia vytvorenie Excel súboru.
-Do Excel súboru uložiť nasledovné údaje:
-- Mesto
-- Dátum
-- Teplota
-- Počasie (popis)
-o Umožniť používateľovi stiahnuť tento Excel súbor po úspešnom spracovaní
-požiadavky.
+3. Vytvor `.env` súbor:
+```
+OPENWEATHER_API_KEY=fa71460b38c7460e4e2223a3b75bc738
+```
 
-5. Používateľské rozhranie:
-Po odoslaní formulára a spracovaní údajov, zobraziť správu o úspechu alebo
-chybe.
-Poskytnúť odkaz na stiahnutie Excel súboru.
+4. Uisti sa, že priečinok `exports/` má práva na zápis.
 
